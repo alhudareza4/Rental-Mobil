@@ -73,7 +73,28 @@ def menampilkanReport():
 
 
 # Define function menambah data mobil rental
+def menambahRentalMobil():
+    while True:
+        pilihanMenambah = int(input('''
+        =======Menambah Data Rental Mobil=======
+        1. Menambah Data Rental Mobil
+        2. Kembali Ke Menu Utama
+        Silahkan pilih sub menu Menambah data [1-2] : '''))
 
+        if pilihanMenambah == 1:
+            primKey = input("Masukan Nomor Indeks : ")
+            NM = input("Masukan Nama Mobil : ")
+            TK = input("Masukan Tipe Kendaraan : ")
+            SPH = input("Masukan Harga Sewa per Hari : ")
+            JM = int(input("Masukan Jumlah Mobil : "))
+            dictMobil[primKey] = {"Nama Mobil": NM, "Tipe Kendaraan": TK, "Sewa per Hari": SPH, "Jumlah Mobil": JM}
+            print("Proses input Data Berhasil ! ")
+            menampilkanReport()
+            continue
+        elif pilihanMenambah == 2:
+            break
+        else:
+            print("Pilihan Menu yang anda Masukan Salah !")
 # Define function mengubah Data Rental Mobil
 
 # Define function Menghapus Data Rental Mobil
@@ -100,21 +121,6 @@ def deleteRentalMobil():
         else:
             print("Pilihan Menu yang anda Masukan Salah !")
 
-    
-
-    #while (True):
-        
-
-        
-        #option2 = input("Apakah anda ingin menghapus Data lainnya ? [Y/N] : ")
-        #if option2 == "Y":
-         #   continue
-        #elif option2 == "N":
-         #   break
-        #else:
-         #   print("Pilihan Menu yang anda Masukan Salah !")
-
-
 
 while True:
     pilihanMenu = int(input('''
@@ -132,7 +138,7 @@ while True:
     if(pilihanMenu == 1):
         reportRentalMobil()
     elif(pilihanMenu == 2):
-        print("2")
+        menambahRentalMobil()
     elif(pilihanMenu == 3):
         print("3")
     elif(pilihanMenu == 4):
