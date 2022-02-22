@@ -78,27 +78,41 @@ def menampilkanReport():
 
 # Define function Menghapus Data Rental Mobil
 def deleteRentalMobil():
+    #menampilkanReport()
+    while True:
     
-    menampilkanReport()
+        pilihanDelete=int(input('''
+        =======Menghapus Data Rental Mobil=======
+        1. Hapus Data Rental Mobil
+        2. Kembali Ke Menu Utama
+        Silahkan pilih sub menu hapus data [1-2] : '''))
 
-    while (True):
-        inputPilihanDelete = input("Masukan Primary Key Data yang ingin dihapus : ")
-        if inputPilihanDelete in dictMobil.keys():
-            del dictMobil[inputPilihanDelete]
-            menampilkanReport()
-
-
-        elif inputPilihanDelete not in dictMobil.keys():
-            print("Primary yang anda Masukan tidak ada di Data Rental mobil")
-            break
-        
-        option2 = input("Apakah anda ingin menghapus Data lainnya ? [Y/N] : ")
-        if option2 == "Y":
-            continue
-        elif option2 == "N":
+        if pilihanDelete == 1:
+            inputPilihanDelete = input("Masukan Primary Key Data yang ingin dihapus : ")
+            if inputPilihanDelete in dictMobil.keys():
+                del dictMobil[inputPilihanDelete]
+                print("Menghapus Data Berhasil !")
+            elif inputPilihanDelete not in dictMobil.keys():
+                print("Primary yang anda Masukan tidak ada di Data Rental mobil")
+            
+        elif pilihanDelete == 2:
             break
         else:
             print("Pilihan Menu yang anda Masukan Salah !")
+
+    
+
+    #while (True):
+        
+
+        
+        #option2 = input("Apakah anda ingin menghapus Data lainnya ? [Y/N] : ")
+        #if option2 == "Y":
+         #   continue
+        #elif option2 == "N":
+         #   break
+        #else:
+         #   print("Pilihan Menu yang anda Masukan Salah !")
 
 
 
