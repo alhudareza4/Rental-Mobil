@@ -64,17 +64,41 @@ def reportRentalMobil():
             print("Pilihan Menu yang anda Masukan Salah !")
 
 def menampilkanReport():
-    print("Daftar Rental Mobil")
-    for key, val3 in dictMobil.items():
-        print("Nama Mobil : {}, Tipe Kendaraan : {}, Sewa per Hari : {}, Jumlah Mobil : {}".format(dictMobil[key]["Nama Mobil"], dictMobil[key]["Tipe Kendaraan"], dictMobil[key]["Sewa per Hari"], dictMobil[key]["Jumlah Mobil"] ))
+    if len(dictMobil) == 0:
+        print("Data Rental Mobil Kosong")
+    elif len(dictMobil) > 0:
+        print("Daftar Rental Mobil")
+        for key, val3 in dictMobil.items():
+            print("Index : {}, Nama Mobil : {}, Tipe Kendaraan : {}, Sewa per Hari : {}, Jumlah Mobil : {}".format(key, dictMobil[key]["Nama Mobil"], dictMobil[key]["Tipe Kendaraan"], dictMobil[key]["Sewa per Hari"], dictMobil[key]["Jumlah Mobil"] ))
 
 
-# Define function menambah mobil rental
+# Define function menambah data mobil rental
 
-# Define function menambah pesanan
+# Define function mengubah Data Rental Mobil
 
-# Define function
+# Define function Menghapus Data Rental Mobil
+def deleteRentalMobil():
+    
+    menampilkanReport()
 
+    while (True):
+        inputPilihanDelete = input("Masukan Primary Key Data yang ingin dihapus : ")
+        if inputPilihanDelete in dictMobil.keys():
+            del dictMobil[inputPilihanDelete]
+            menampilkanReport()
+
+
+        elif inputPilihanDelete not in dictMobil.keys():
+            print("Primary yang anda Masukan tidak ada di Data Rental mobil")
+            break
+        
+        option2 = input("Apakah anda ingin menghapus Data lainnya ? [Y/N] : ")
+        if option2 == "Y":
+            continue
+        elif option2 == "N":
+            break
+        else:
+            print("Pilihan Menu yang anda Masukan Salah !")
 
 
 
@@ -98,7 +122,7 @@ while True:
     elif(pilihanMenu == 3):
         print("3")
     elif(pilihanMenu == 4):
-        print("4")
+        deleteRentalMobil()
     elif(pilihanMenu == 5):
         break
     else:
