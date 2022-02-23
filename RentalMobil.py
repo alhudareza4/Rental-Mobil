@@ -19,7 +19,7 @@ dictMobil= {"10A":{"Nama Mobil":"Avanza",
 def reportRentalMobil():
     
     while (True):
-        pilihanReport= int(input('''
+        pilihanReport= input('''
         ===== Report Rental Mobil =====
 
         1. Report Seluruh Data Kendaraan
@@ -27,11 +27,11 @@ def reportRentalMobil():
         3. Kembali ke Menu Utama
         
         Silahkan Pilih Menu yang ingin Ditampilkan [1-3] :
-        '''))
-        if (pilihanReport == 1):
+        ''')
+        if (pilihanReport == '1'):
             menampilkanReport()
 
-        elif(pilihanReport == 2):
+        elif(pilihanReport == '2'):
             while (True):
                 inputPrimKey = input("Masukan Primary Key Data Yang ingin anda Tampilkan : ")
                 if len(inputPrimKey) == 0:
@@ -41,19 +41,22 @@ def reportRentalMobil():
                     print("Primary Key Yang anda Masukan Salah")
                     break
                 elif (inputPrimKey in dictMobil.keys()):
-                    print(dictMobil[inputPrimKey])
+                    print("Nama Mobil : {}, Tipe Kendaraan : {}, Biaya : {}, Penyewa : {}".format(dictMobil[inputPrimKey]['Nama Mobil'],
+                                                                                                    dictMobil[inputPrimKey]['Tipe Kendaraan'],
+                                                                                                    dictMobil[inputPrimKey]['Biaya'],
+                                                                                                    dictMobil[inputPrimKey]['Penyewa']))
                     break
                 break
-        elif(pilihanReport ==3):
+        elif(pilihanReport =='3'):
             break
         else:
             print("Pilihan Menu yang anda Masukan Salah !")
 
 def menampilkanReport():
     if len(dictMobil) == 0:
-        print("Data Rental Mobil Kosong")
+        print("########## Data Rental Mobil Kosong ##########")
     elif len(dictMobil) > 0:
-        print("Daftar Rental Mobil")
+        print("========== Daftar Rental Mobil ==========")
         for key, val3 in dictMobil.items():
             print("Index : {}, Nama Mobil : {}, Tipe Kendaraan : {}, Biaya : {}, Penyewa : {}".format(key, 
                                                                                                             dictMobil[key]["Nama Mobil"], 
@@ -65,13 +68,13 @@ def menampilkanReport():
 # Define function menambah data mobil rental
 def menambahRentalMobil():
     while True:
-        pilihanMenambah = int(input('''
+        pilihanMenambah = input('''
         =======Menambah Data Rental Mobil=======
         1. Menambah Data Rental Mobil
         2. Kembali Ke Menu Utama
-        Silahkan pilih sub menu Menambah data [1-2] : '''))
+        Silahkan pilih sub menu Menambah data [1-2] : ''')
 
-        if pilihanMenambah == 1:
+        if pilihanMenambah == '1':
             while True:
                 primKey = input("Masukan Nomor Indeks : ")
                 if primKey in dictMobil.keys():
@@ -124,7 +127,7 @@ def menambahRentalMobil():
             print("Proses input Data Berhasil ! ")
             menampilkanReport()
             continue
-        elif pilihanMenambah == 2:
+        elif pilihanMenambah == '2':
             break
         else:
             print("Pilihan Menu yang anda Masukan Salah !")
@@ -133,7 +136,7 @@ def menambahRentalMobil():
 def mengubahRentalMobil():
     while True:
         
-        pilihanMengubah = int(input('''
+        pilihanMengubah = input('''
         =======Mengubah Data Rental Mobil=======
         1. Index Data
         2. Nama Mobil
@@ -141,9 +144,9 @@ def mengubahRentalMobil():
         4. Biaya
         5. Penyewa
         6. Kembali ke menu utama
-        Silahkan pilih data yang akan diubah [1-6] : '''))
+        Silahkan pilih data yang akan diubah [1-6] : ''')
 
-        if pilihanMengubah == 1:
+        if pilihanMengubah == '1':
             while True:
                 PrimKey = input("Masukan Indeks Data yang ingin anda Ubah : ")
                 if len(PrimKey) == 0:
@@ -169,7 +172,7 @@ def mengubahRentalMobil():
             
                         
 
-        elif pilihanMengubah == 2:
+        elif pilihanMengubah == '2':
             while True:
                 PrimKey = input("Masukan Indeks Data yang ingin anda Ubah : ")
                 if len(PrimKey) == 0:
@@ -192,7 +195,7 @@ def mengubahRentalMobil():
                             break
                 break
             
-        elif pilihanMengubah == 3:
+        elif pilihanMengubah == '3':
             while True:
                 PrimKey = input("Masukan Indeks Data yang ingin anda Ubah : ")
                 if len(PrimKey) == 0:
@@ -215,7 +218,7 @@ def mengubahRentalMobil():
                             break
                 break
             
-        elif pilihanMengubah == 4:
+        elif pilihanMengubah == '4':
             while True:
                 PrimKey = input("Masukan Indeks Data yang ingin anda Ubah : ")
                 if len(PrimKey) == 0:
@@ -238,7 +241,7 @@ def mengubahRentalMobil():
                             break
                 break
             
-        elif pilihanMengubah == 5:
+        elif pilihanMengubah == '5':
             while True:
                 PrimKey = input("Masukan Indeks Data yang ingin anda Ubah : ")
                 if len(PrimKey) == 0:
@@ -261,7 +264,7 @@ def mengubahRentalMobil():
                             break
                 break
             
-        elif pilihanMengubah == 6:
+        elif pilihanMengubah == '6':
             break
         else:
             print("Pilihan Menu yang anda Masukan Salah !")
@@ -271,13 +274,13 @@ def deleteRentalMobil():
     #menampilkanReport()
     while True:
     
-        pilihanDelete=int(input('''
+        pilihanDelete=input('''
         =======Menghapus Data Rental Mobil=======
         1. Hapus Data Rental Mobil
         2. Kembali Ke Menu Utama
-        Silahkan pilih sub menu hapus data [1-2] : '''))
+        Silahkan pilih sub menu hapus data [1-2] : ''')
 
-        if pilihanDelete == 1:
+        if pilihanDelete == '1':
             inputPilihanDelete = input("Masukan Primary Key Data yang ingin dihapus : ")
             if inputPilihanDelete in dictMobil.keys():
                 del dictMobil[inputPilihanDelete]
@@ -288,14 +291,14 @@ def deleteRentalMobil():
             elif inputPilihanDelete not in dictMobil.keys():
                 print("Primary yang anda Masukan tidak ada di Data Rental mobil")
             
-        elif pilihanDelete == 2:
+        elif pilihanDelete == '2':
             break
         else:
             print("Pilihan Menu yang anda Masukan Salah !")
 
 
 while True:
-    pilihanMenu = int(input('''
+    pilihanMenu = input('''
     ======== Selamat datang dirental Mobil ========
 
     List Menu:
@@ -305,17 +308,17 @@ while True:
     4. Menghapus Data Rental Mobil
     5. Exit Program
 
-    Masukan angka Menu yang ingin dijalankan [1-5] : '''))
+    Masukan angka Menu yang ingin dijalankan [1-5] : ''')
 
-    if(pilihanMenu == 1):
+    if(pilihanMenu == '1'):
         reportRentalMobil()
-    elif(pilihanMenu == 2):
+    elif(pilihanMenu == '2'):
         menambahRentalMobil()
-    elif(pilihanMenu == 3):
+    elif(pilihanMenu == '3'):
         mengubahRentalMobil()
-    elif(pilihanMenu == 4):
+    elif(pilihanMenu == '4'):
         deleteRentalMobil()
-    elif(pilihanMenu == 5):
+    elif(pilihanMenu == '5'):
         break
     else:
         print("pilihan menu yang anda masukan salah!")
