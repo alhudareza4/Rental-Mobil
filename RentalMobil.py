@@ -1,13 +1,6 @@
 
 # Define Data
-'''
-primary key
 
-nama mobil
-tipe mobil
-harga perhari
-jumlah hari
-'''
 dictMobil= {"10A":{"Nama Mobil":"Avanza",
                     "Tipe Kendaraan":"MPV",
                     "Sewa per Hari": 300000,
@@ -21,11 +14,7 @@ dictMobil= {"10A":{"Nama Mobil":"Avanza",
 
 
 # Define function menampilkan daftar 
-'''
-1. menampilkan seluruh data
-2. menampilkan data tertentu
-3. kembali ke menu utama
-'''
+
 def reportRentalMobil():
     
     while (True):
@@ -44,20 +33,16 @@ def reportRentalMobil():
         elif(pilihanReport == 2):
             while (True):
                 inputPrimKey = input("Masukan Primary Key Data Yang ingin anda Tampilkan : ")
-                if (inputPrimKey not in dictMobil.keys()):
+                if len(inputPrimKey) == 0:
+                    print("Primary key yang dimasukan tidak boleh kosong !")
+                    break
+                elif (inputPrimKey not in dictMobil.keys()):
                     print("Primary Key Yang anda Masukan Salah")
-                    while True:
-                        val1 = input("Apakah anda ingin Kembali ? [Y/N] : ")
-                        if val1 == "Y":
-                            break
-                        elif val1 == "N":
-                            continue
-                        else:
-                            print("Pilihan Menu yang anda Masukan Salah !")
                     break
                 elif (inputPrimKey in dictMobil.keys()):
                     print(dictMobil[inputPrimKey])
                     break
+                break
         elif(pilihanReport ==3):
             break
         else:
@@ -69,7 +54,11 @@ def menampilkanReport():
     elif len(dictMobil) > 0:
         print("Daftar Rental Mobil")
         for key, val3 in dictMobil.items():
-            print("Index : {}, Nama Mobil : {}, Tipe Kendaraan : {}, Sewa per Hari : {}, Jumlah Mobil : {}".format(key, dictMobil[key]["Nama Mobil"], dictMobil[key]["Tipe Kendaraan"], dictMobil[key]["Sewa per Hari"], dictMobil[key]["Jumlah Mobil"] ))
+            print("Index : {}, Nama Mobil : {}, Tipe Kendaraan : {}, Sewa per Hari : {}, Jumlah Mobil : {}".format(key, 
+                                                                                                            dictMobil[key]["Nama Mobil"], 
+                                                                                                            dictMobil[key]["Tipe Kendaraan"], 
+                                                                                                            dictMobil[key]["Sewa per Hari"], 
+                                                                                                            dictMobil[key]["Jumlah Mobil"] ))
 
 
 # Define function menambah data mobil rental
@@ -82,11 +71,54 @@ def menambahRentalMobil():
         Silahkan pilih sub menu Menambah data [1-2] : '''))
 
         if pilihanMenambah == 1:
-            primKey = input("Masukan Nomor Indeks : ")
-            NM = input("Masukan Nama Mobil : ")
-            TK = input("Masukan Tipe Kendaraan : ")
-            SPH = input("Masukan Harga Sewa per Hari : ")
-            JM = int(input("Masukan Jumlah Mobil : "))
+            while True:
+                primKey = input("Masukan Nomor Indeks : ")
+                if primKey in dictMobil.keys():
+                    print("Primary key yang anda masukan tidak boleh sama dengan yang sudah ada !")
+                    continue
+                elif len(primKey) == 0:
+                    print("Primary Key tidak Boleh Kosong !")
+                    continue
+                else:
+                    print("Input Primary key Berhasil !")
+                    break
+
+            while True:
+                NM = input("Masukan Nama Mobil : ")
+                if len(NM) == 0:
+                    print("Nama Mobil Tidak boleh Kosong !")
+                    continue
+                else:
+                    print("Input Nama Mobil berhasil !")
+                    break
+            
+            while True:
+                TK = input("Masukan Tipe Kendaraan : ")
+                if len(TK) == 0:
+                    print("Tipe Kendaraan Tidak boleh Kosong !")
+                    continue
+                else:
+                    print("Input Tipe Kendaraan berhasil !")
+                    break            
+            
+            while True:
+                try:
+                    SPH = int(input("Masukan Harga Sewa per Hari : "))
+                except:
+                    print("Input yang dimasukan haruslah bilangan !")
+                    continue
+                print("Input Sewa Kendaraan berhasil !")
+                break                 
+            
+            while True:
+                JM = int(input("Masukan Jumlah Mobil : "))
+                if len(JM) == 0:
+                    print("Jumlah Mobil Tidak boleh Kosong !")
+                    continue
+                else:
+                    print("Input Jumlah Mobil berhasil !")
+                    break          
+            
             dictMobil[primKey] = {"Nama Mobil": NM, "Tipe Kendaraan": TK, "Sewa per Hari": SPH, "Jumlah Mobil": JM}
             print("Proses input Data Berhasil ! ")
             menampilkanReport()
@@ -98,7 +130,7 @@ def menambahRentalMobil():
 # Define function mengubah Data Rental Mobil
 def mengubahRentalMobil():
     while True:
-        #menampilkanReport()
+        
         pilihanMengubah = int(input('''
         =======Mengubah Data Rental Mobil=======
         1. Index Data
@@ -112,8 +144,12 @@ def mengubahRentalMobil():
         if pilihanMengubah == 1:
             while True:
                 PrimKey = input("Masukan Indeks Data yang ingin anda Ubah : ")
-                if PrimKey not in dictMobil.keys():
+                if len(PrimKey) == 0:
+                    print("Index yang dimasukan tidak boleh kosong !")
+                    break
+                elif PrimKey not in dictMobil.keys():
                     print("Index yang anda Masukan tidak ada")
+                    break
                 elif PrimKey in dictMobil.keys():
                     while True:
                         newPrimKey = input("Masukan Indeks Data Yang Baru : ")
@@ -127,13 +163,18 @@ def mengubahRentalMobil():
                             print("\nProses Mengubah Data Berhasil ! \n")
                             break
                     break
+            menampilkanReport()
                         
 
         elif pilihanMengubah == 2:
             while True:
                 PrimKey = input("Masukan Indeks Data yang ingin anda Ubah : ")
-                if PrimKey not in dictMobil.keys():
+                if len(PrimKey) == 0:
+                    print("Index yang dimasukan tidak boleh kosong !")
+                    break
+                elif PrimKey not in dictMobil.keys():
                     print("Index yang anda Masukan tidak ada")
+                    break               
                 elif PrimKey in dictMobil.keys():
                     while True:
                         newNM = input("Masukan Nama Mobil yang Baru : ")
@@ -142,15 +183,20 @@ def mengubahRentalMobil():
                         elif newNM == dictMobil[PrimKey]["Nama Mobil"]:
                             print("Nama Mobil baru yang anda masukan tidak boleh sama !")
                         else:
-                            dictMobil["Nama Mobil"] = newNM      
+                            dictMobil[PrimKey]["Nama Mobil"] = newNM      
                             print("\nProses Mengubah Data Berhasil ! \n")
                             break
                 break
+            menampilkanReport()
         elif pilihanMengubah == 3:
             while True:
                 PrimKey = input("Masukan Indeks Data yang ingin anda Ubah : ")
-                if PrimKey not in dictMobil.keys():
+                if len(PrimKey) == 0:
+                    print("Index yang dimasukan tidak boleh kosong !")
+                    break
+                elif PrimKey not in dictMobil.keys():
                     print("Index yang anda Masukan tidak ada")
+                    break
                 elif PrimKey in dictMobil.keys():
                     while True:
                         newTK = input("Masukan Tipe Mobil yang Baru : ")
@@ -159,15 +205,20 @@ def mengubahRentalMobil():
                         elif newTK == dictMobil[PrimKey]["Tipe Kendaraan"]:
                             print("Tipe Mobil baru yang anda masukan tidak boleh sama !")
                         else:
-                            dictMobil["Tipe Kendaraan"] = newTK    
+                            dictMobil[PrimKey]["Tipe Kendaraan"] = newTK    
                             print("\nProses Mengubah Data Berhasil ! \n")
                             break
                 break
+            menampilkanReport()
         elif pilihanMengubah == 4:
             while True:
                 PrimKey = input("Masukan Indeks Data yang ingin anda Ubah : ")
-                if PrimKey not in dictMobil.keys():
+                if len(PrimKey) == 0:
+                    print("Index yang dimasukan tidak boleh kosong !")
+                    break
+                elif PrimKey not in dictMobil.keys():
                     print("Index yang anda Masukan tidak ada")
+                    break
                 elif PrimKey in dictMobil.keys():
                     while True:
                         newSWP = input("Masukan Sewa per Hari yang Baru : ")
@@ -176,15 +227,20 @@ def mengubahRentalMobil():
                         elif int(newSWP) == dictMobil[PrimKey]["Sewa per Hari"]:
                             print("Sewa per Hari baru yang anda masukan tidak boleh sama !")
                         else:
-                            dictMobil["Sewa per Hari"] = int(newSWP)    
+                            dictMobil[PrimKey]["Sewa per Hari"] = int(newSWP)    
                             print("\nProses Mengubah Data Berhasil ! \n")
                             break
                 break
+            menampilkanReport()
         elif pilihanMengubah == 5:
             while True:
                 PrimKey = input("Masukan Indeks Data yang ingin anda Ubah : ")
-                if PrimKey not in dictMobil.keys():
+                if len(PrimKey) == 0:
+                    print("Index yang dimasukan tidak boleh kosong !")
+                    break
+                elif PrimKey not in dictMobil.keys():
                     print("Index yang anda Masukan tidak ada")
+                    break
                 elif PrimKey in dictMobil.keys():
                     while True:
                         newJM = input("Masukan Jumlah Mobil yang Baru : ")
@@ -193,10 +249,11 @@ def mengubahRentalMobil():
                         elif int(newJM) == dictMobil[PrimKey]["Jumlah Mobil"]:
                             print("Jumlah Mobil baru yang anda masukan tidak boleh sama !")
                         else:
-                            dictMobil["Jumlah Mobil"] = int(newJM)   
+                            dictMobil[PrimKey]["Jumlah Mobil"] = int(newJM)   
                             print("\nProses Mengubah Data Berhasil ! \n")
                             break
                 break
+            menampilkanReport()
         elif pilihanMengubah == 6:
             break
         else:
@@ -219,6 +276,8 @@ def deleteRentalMobil():
                 del dictMobil[inputPilihanDelete]
                 print("Menghapus Data Berhasil !")
                 menampilkanReport()
+            elif len(inputPilihanDelete) == 0:
+                print("Primary Key tidak Boleh Kosong !")
             elif inputPilihanDelete not in dictMobil.keys():
                 print("Primary yang anda Masukan tidak ada di Data Rental mobil")
             
@@ -239,7 +298,7 @@ while True:
     4. Menghapus Data Rental Mobil
     5. Exit Program
 
-    Masukan angka Menu yang ingin dijalankan : '''))
+    Masukan angka Menu yang ingin dijalankan [1-5] : '''))
 
     if(pilihanMenu == 1):
         reportRentalMobil()
