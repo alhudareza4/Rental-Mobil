@@ -1,17 +1,15 @@
 
 # Define Data
 
-from pyrsistent import m
-
 
 dictMobil= {"10A":{"Nama Mobil":"Avanza",
                     "Tipe Kendaraan":"MPV",
-                    "Sewa per Hari": 300000,
-                    "Jumlah Mobil":30},
+                    "Biaya": 300000,
+                    "Penyewa":"Udin"},
             "11A":{"Nama Mobil":"Fortuner",
                     "Tipe Kendaraan":"SUV",
-                    "Sewa per Hari": 500000,
-                    "Jumlah Mobil":30}
+                    "Biaya": 500000,
+                    "Penyewa":"Asep"}
             }
 
 
@@ -57,11 +55,11 @@ def menampilkanReport():
     elif len(dictMobil) > 0:
         print("Daftar Rental Mobil")
         for key, val3 in dictMobil.items():
-            print("Index : {}, Nama Mobil : {}, Tipe Kendaraan : {}, Sewa per Hari : {}, Jumlah Mobil : {}".format(key, 
+            print("Index : {}, Nama Mobil : {}, Tipe Kendaraan : {}, Biaya : {}, Penyewa : {}".format(key, 
                                                                                                             dictMobil[key]["Nama Mobil"], 
                                                                                                             dictMobil[key]["Tipe Kendaraan"], 
-                                                                                                            dictMobil[key]["Sewa per Hari"], 
-                                                                                                            dictMobil[key]["Jumlah Mobil"] ))
+                                                                                                            dictMobil[key]["Biaya"], 
+                                                                                                            dictMobil[key]["Penyewa"] ))
 
 
 # Define function menambah data mobil rental
@@ -106,23 +104,23 @@ def menambahRentalMobil():
             
             while True:
                 try:
-                    SPH = int(input("Masukan Harga Sewa per Hari : "))
+                    B = int(input("Masukan Biaya yang dikeluarkan : "))
                 except:
                     print("Input yang dimasukan haruslah bilangan !")
                     continue
-                print("Input Sewa Kendaraan berhasil !")
+                print("Input Biaya Sewa Kendaraan berhasil !")
                 break                 
             
             while True:
-                JM = int(input("Masukan Jumlah Mobil : "))
-                if len(JM) == 0:
-                    print("Jumlah Mobil Tidak boleh Kosong !")
+                P = input("Masukan Penyewa Mobil : ")
+                if len(P) == 0:
+                    print("Penyewa Tidak boleh Kosong !")
                     continue
                 else:
-                    print("Input Jumlah Mobil berhasil !")
+                    print("Input Penyewa Mobil berhasil !")
                     break          
             
-            dictMobil[primKey] = {"Nama Mobil": NM, "Tipe Kendaraan": TK, "Sewa per Hari": SPH, "Jumlah Mobil": JM}
+            dictMobil[primKey] = {"Nama Mobil": NM, "Tipe Kendaraan": TK, "Biaya": B, "Penyewa": P}
             print("Proses input Data Berhasil ! ")
             menampilkanReport()
             continue
@@ -130,6 +128,7 @@ def menambahRentalMobil():
             break
         else:
             print("Pilihan Menu yang anda Masukan Salah !")
+
 # Define function mengubah Data Rental Mobil
 def mengubahRentalMobil():
     while True:
@@ -139,8 +138,8 @@ def mengubahRentalMobil():
         1. Index Data
         2. Nama Mobil
         3. Tipe Mobil
-        4. Sewa per Hari
-        5. Jumlah Mobil
+        4. Biaya
+        5. Penyewa
         6. Kembali ke menu utama
         Silahkan pilih data yang akan diubah [1-6] : '''))
 
@@ -227,13 +226,13 @@ def mengubahRentalMobil():
                     break
                 elif PrimKey in dictMobil.keys():
                     while True:
-                        newSWP = input("Masukan Sewa per Hari yang Baru : ")
-                        if len(newSWP) == 0:
+                        newB = input("Masukan Biaya yang Baru : ")
+                        if len(newB) == 0:
                             print("data yang anda Masukan tidak Boleh Kosong ! ")
-                        elif int(newSWP) == dictMobil[PrimKey]["Sewa per Hari"]:
-                            print("Sewa per Hari baru yang anda masukan tidak boleh sama !")
+                        elif int(newB) == dictMobil[PrimKey]["Biaya"]:
+                            print("Biaya baru yang anda masukan tidak boleh sama !")
                         else:
-                            dictMobil[PrimKey]["Sewa per Hari"] = int(newSWP)    
+                            dictMobil[PrimKey]["Biaya"] = int(newB)  
                             print("\nProses Mengubah Data Berhasil ! \n")
                             menampilkanReport()
                             break
@@ -250,13 +249,13 @@ def mengubahRentalMobil():
                     break
                 elif PrimKey in dictMobil.keys():
                     while True:
-                        newJM = input("Masukan Jumlah Mobil yang Baru : ")
-                        if len(newJM) == 0:
+                        newP = input("Masukan Penyewa yang Baru : ")
+                        if len(newP) == 0:
                             print("data yang anda Masukan tidak Boleh Kosong ! ")
-                        elif int(newJM) == dictMobil[PrimKey]["Jumlah Mobil"]:
+                        elif newP == dictMobil[PrimKey]["Penyewa"]:
                             print("Jumlah Mobil baru yang anda masukan tidak boleh sama !")
                         else:
-                            dictMobil[PrimKey]["Jumlah Mobil"] = int(newJM)   
+                            dictMobil[PrimKey]["Penyewa"] = newP 
                             print("\nProses Mengubah Data Berhasil ! \n")
                             menampilkanReport()
                             break
