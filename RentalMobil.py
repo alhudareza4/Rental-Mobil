@@ -229,10 +229,15 @@ def mengubahRentalMobil():
                     break
                 elif PrimKey in dictMobil.keys():
                     while True:
-                        newB = input("Masukan Biaya yang Baru : ")
-                        if len(newB) == 0:
+                        try:
+                            newB = int(input("Masukan Biaya yang Baru : "))
+                        except:
+                            print("Input yang dimasukan haruslah bilangan !")
+                            continue
+
+                        if str(newB) == 0:
                             print("data yang anda Masukan tidak Boleh Kosong ! ")
-                        elif int(newB) == dictMobil[PrimKey]["Biaya"]:
+                        elif newB == dictMobil[PrimKey]["Biaya"]:
                             print("Biaya baru yang anda masukan tidak boleh sama !")
                         else:
                             dictMobil[PrimKey]["Biaya"] = int(newB)  
