@@ -1,6 +1,9 @@
 
 # Define Data
 
+from pyrsistent import m
+
+
 dictMobil= {"10A":{"Nama Mobil":"Avanza",
                     "Tipe Kendaraan":"MPV",
                     "Sewa per Hari": 300000,
@@ -156,14 +159,15 @@ def mengubahRentalMobil():
                         if len(newPrimKey) == 0:
                             print("data yang anda Masukan tidak Boleh Kosong ! ")
                         elif newPrimKey in dictMobil.keys():
-                            print("Indeks baru yang anda masukan tidak boleh sama !")
+                            print("Indeks baru yang anda masukan tidak boleh sama dengan yang sudah ada !")
                         else:
                             dictMobil[newPrimKey] = dictMobil[PrimKey]
                             del dictMobil[PrimKey]
                             print("\nProses Mengubah Data Berhasil ! \n")
+                            menampilkanReport()
                             break
                     break
-            menampilkanReport()
+            
                         
 
         elif pilihanMengubah == 2:
@@ -185,9 +189,10 @@ def mengubahRentalMobil():
                         else:
                             dictMobil[PrimKey]["Nama Mobil"] = newNM      
                             print("\nProses Mengubah Data Berhasil ! \n")
+                            menampilkanReport()
                             break
                 break
-            menampilkanReport()
+            
         elif pilihanMengubah == 3:
             while True:
                 PrimKey = input("Masukan Indeks Data yang ingin anda Ubah : ")
@@ -207,9 +212,10 @@ def mengubahRentalMobil():
                         else:
                             dictMobil[PrimKey]["Tipe Kendaraan"] = newTK    
                             print("\nProses Mengubah Data Berhasil ! \n")
+                            menampilkanReport()
                             break
                 break
-            menampilkanReport()
+            
         elif pilihanMengubah == 4:
             while True:
                 PrimKey = input("Masukan Indeks Data yang ingin anda Ubah : ")
@@ -229,9 +235,10 @@ def mengubahRentalMobil():
                         else:
                             dictMobil[PrimKey]["Sewa per Hari"] = int(newSWP)    
                             print("\nProses Mengubah Data Berhasil ! \n")
+                            menampilkanReport()
                             break
                 break
-            menampilkanReport()
+            
         elif pilihanMengubah == 5:
             while True:
                 PrimKey = input("Masukan Indeks Data yang ingin anda Ubah : ")
@@ -251,9 +258,10 @@ def mengubahRentalMobil():
                         else:
                             dictMobil[PrimKey]["Jumlah Mobil"] = int(newJM)   
                             print("\nProses Mengubah Data Berhasil ! \n")
+                            menampilkanReport()
                             break
                 break
-            menampilkanReport()
+            
         elif pilihanMengubah == 6:
             break
         else:
